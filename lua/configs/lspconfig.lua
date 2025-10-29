@@ -2,6 +2,7 @@ require("nvchad.configs.lspconfig").defaults()
 
 local servers = {
   nixd = {},
+  unocss = {},
   emmet_language_server = {
     filetypes = {
       "css",
