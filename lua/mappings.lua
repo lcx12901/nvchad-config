@@ -15,9 +15,9 @@ map("n", "<leader>cf", function()
 end, { desc = "conform format file" })
 
 --! -- -- -- menu -- -- -- !--
-map("<C-m>", "n", function()
-  require("menu").open "default"
-end, { desc = "menu open" })
+-- map("<C-m>", "n", function()
+--   require("menu").open "default"
+-- end, { desc = "menu open" })
 
 --! -- -- -- minty -- -- -- !--
 wk.add {
