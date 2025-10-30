@@ -8,12 +8,22 @@ return {
   { "stevearc/conform.nvim", opts = require "configs.conform-nvim" },
   { "nvim-treesitter/nvim-treesitter", opts = require "configs.nvim-treesitter" },
   { "folke/snacks.nvim", priority = 1000, lazy = false, opts = require "configs.snacks" },
-
   {
     "neovim/nvim-lspconfig",
     config = function()
       require "configs.lspconfig"
     end,
+  },
+
+  {
+    "folke/lazydev.nvim",
+    ft = "lua",
+    cmd = "LazyDev",
+    opts = {
+      library = {
+        { path = "snacks.nvim", words = { "Snacks" } },
+      },
+    },
   },
   { "HiPhish/rainbow-delimiters.nvim", event = "User FilePost" },
   {
@@ -27,5 +37,10 @@ return {
     config = function(_, opts)
       require("mini.indentscope").setup(opts)
     end,
+  },
+  {
+    "Wansmer/treesj",
+    keys = { "<space>m", "<space>j", "<space>s" },
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
   },
 }

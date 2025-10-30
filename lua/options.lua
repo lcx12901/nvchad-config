@@ -21,6 +21,7 @@ o.number = true
 o.numberwidth = 4
 o.relativenumber = true
 o.fileencoding = "utf-8"
+o.cursorlineopt = "both"
 
 opt.completeopt = {
   "fuzzy",
