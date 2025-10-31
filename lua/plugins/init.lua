@@ -9,6 +9,22 @@ return {
   { "nvim-treesitter/nvim-treesitter", opts = require "configs.nvim-treesitter" },
   { "folke/snacks.nvim", priority = 1000, lazy = false, opts = require "configs.snacks" },
   {
+    "saghen/blink.cmp",
+    dependencies = {
+      "moyiz/blink-emoji.nvim",
+      {
+        "mikavilpas/blink-ripgrep.nvim",
+        version = "*",
+      },
+      "ribru17/blink-cmp-spell",
+      {
+        "Kaiser-Yang/blink-cmp-dictionary",
+        dependencies = { "nvim-lua/plenary.nvim" },
+      },
+    },
+    opts = require "configs.blink",
+  },
+  {
     "neovim/nvim-lspconfig",
     config = function()
       require "configs.lspconfig"
@@ -22,6 +38,7 @@ return {
     opts = {
       library = {
         { path = "snacks.nvim", words = { "Snacks" } },
+        { path = "lazy.nvim", words = { "LazyVim" } },
       },
     },
   },
@@ -53,6 +70,7 @@ return {
   },
   {
     "MagicDuck/grug-far.nvim",
+    cmd = "GrugFar",
     config = function()
       require("grug-far").setup {}
     end,
