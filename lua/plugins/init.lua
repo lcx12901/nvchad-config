@@ -25,6 +25,19 @@ return {
       },
     },
   },
+  {
+    "Shatur/neovim-session-manager",
+    event = "BufEnter",
+    dependencies = { "stevearc/dressing.nvim", "nvim-lua/plenary.nvim" },
+    config = function()
+      local Path = require "plenary.path"
+      local config = require "session_manager.config"
+      require("session_manager").setup {
+        sessions_dir = Path:new(vim.fn.stdpath "state", "sessions"),
+        autoload_mode = config.AutoloadMode.GitSession,
+      }
+    end,
+  },
   { "HiPhish/rainbow-delimiters.nvim", event = "User FilePost" },
   {
     "echasnovski/mini.indentscope",
@@ -39,8 +52,18 @@ return {
     end,
   },
   {
+    "MagicDuck/grug-far.nvim",
+    config = function()
+      require("grug-far").setup {}
+    end,
+  },
+  {
     "Wansmer/treesj",
     keys = { "<space>m", "<space>j", "<space>s" },
+    event = "BufEnter",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
+    config = function()
+      require("treesj").setup {}
+    end,
   },
 }
