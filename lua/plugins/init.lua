@@ -36,7 +36,6 @@ return {
     opts = {
       library = {
         { path = "snacks.nvim", words = { "Snacks" } },
-        { path = "lazy.nvim", words = { "LazyVim" } },
       },
     },
   },
@@ -80,6 +79,33 @@ return {
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
       require("treesj").setup {}
+    end,
+  },
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    opts = {
+      check_ts = true,
+      highlight = "PmenuSel",
+      highlight_grey = "LineNr",
+    },
+  },
+  {
+    "windwp/nvim-ts-autotag",
+    event = "BufEnter",
+    config = function()
+      require("nvim-ts-autotag").setup {}
+    end,
+  },
+  { "wakatime/vim-wakatime", lazy = false },
+  {
+    "rmagatti/goto-preview",
+    dependencies = { "rmagatti/logger.nvim" },
+    event = "BufEnter",
+    config = function()
+      require("goto-preview").setup {
+        default_mappings = false,
+      }
     end,
   },
 }
