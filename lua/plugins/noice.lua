@@ -30,16 +30,10 @@ return {
       {
         filter = {
           event = "notify",
-          find = "No information available",
-        },
-        opts = {
-          skip = true,
-        },
-      },
-      {
-        filter = {
-          event = "msg_showmode",
-          find = "No signature help available",
+          any = {
+            { find = "No information available" },
+            { find = "No signature help available" },
+          },
         },
         opts = {
           skip = true,
