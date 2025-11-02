@@ -17,10 +17,8 @@ return {
         version = "*",
       },
       "ribru17/blink-cmp-spell",
-      {
-        "Kaiser-Yang/blink-cmp-dictionary",
-        dependencies = { "nvim-lua/plenary.nvim" },
-      },
+      "Kaiser-Yang/blink-cmp-avante",
+      "giuxtaposition/blink-cmp-copilot",
     },
     opts = require "configs.blink",
   },

@@ -44,12 +44,12 @@ local options = {
       "emoji",
       "ripgrep",
       "spell",
-      "dictionary",
+      "avante",
+      "copilot",
     },
     providers = {
-      lsp = {
-        score_offset = 4,
-      },
+      lsp = { score_offset = 4 },
+      avante = { module = "blink-cmp-avante", name = "Avante", score_offset = 100 },
       emoji = {
         module = "blink-emoji",
         name = "Emoji",
@@ -80,10 +80,11 @@ local options = {
         name = "Spell",
         score_offset = 1,
       },
-      dictionary = {
-        module = "blink-cmp-dictionary",
-        name = "Dict",
-        min_keyword_length = 3,
+      copilot = {
+        name = "copilot",
+        module = "blink-cmp-copilot",
+        score_offset = 100,
+        async = true,
       },
     },
   },
