@@ -12,6 +12,7 @@ return {
         ["vim.lsp.util.stylize_markdown"] = true,
         ["cmp.entry.get_documentation"] = true,
       },
+      progress = { enabled = false },
       signature = { enabled = true },
     },
     routes = {
@@ -30,6 +31,15 @@ return {
         filter = {
           event = "notify",
           find = "No information available",
+        },
+        opts = {
+          skip = true,
+        },
+      },
+      {
+        filter = {
+          event = "msg_showmode",
+          find = "No signature help available",
         },
         opts = {
           skip = true,
@@ -59,7 +69,7 @@ return {
     },
   },
   keys = {
-    { "<leader>sn", "", desc = "+noice" },
+    { "<leader>sn", "", desc = "noice" },
     {
       "<S-Enter>",
       function()
@@ -129,12 +139,6 @@ return {
     },
   },
   config = function(_, opts)
-    -- HACK: noice shows messages from before it was enabled,
-    -- but this is not ideal when Lazy is installing plugins,
-    -- so clear the messages in this case.
-    if vim.o.filetype == "lazy" then
-      vim.cmd [[messages clear]]
-    end
     require("noice").setup(opts)
   end,
 }
