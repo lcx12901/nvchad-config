@@ -6,7 +6,7 @@ local servers = {
   vue_ls = {},
   ts_ls = {
     init_options = {
-      maxTsServerMemory = 8192,
+      maxTsServerMemory = 16384,
       plugins = {
         {
           name = "@vue/typescript-plugin",
