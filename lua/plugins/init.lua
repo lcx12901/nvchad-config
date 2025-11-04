@@ -104,7 +104,18 @@ return {
     event = "BufEnter",
     config = function()
       require("goto-preview").setup {
-        default_mappings = false,
+        default_mappings = true,
+      }
+    end,
+  },
+  {
+    "vuki656/package-info.nvim",
+    dependencies = { "MunifTanjim/nui.nvim" },
+    event = "BufEnter",
+    config = function()
+      require("package-info").setup {
+        hide_up_to_date = true,
+        package_manager = "pnpm",
       }
     end,
   },
