@@ -24,6 +24,7 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
+    opts = { diagnostics = { virtual_text = false } },
     config = function()
       require "configs.lspconfig"
     end,
