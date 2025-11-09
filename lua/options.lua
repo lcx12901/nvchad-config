@@ -12,10 +12,7 @@ o.history = 10000
 o.termguicolors = true
 o.undofile = true
 o.undolevels = 100000
-opt.virtualedit = {
-  "block",
-  "onemore",
-}
+opt.virtualedit = { "block", "onemore" }
 o.wrap = true
 o.number = true
 o.numberwidth = 4
