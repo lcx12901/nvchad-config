@@ -62,6 +62,50 @@ wk.add {
 
 --! -- -- -- snacks -- -- -- !--
 map("n", "<leader>tl", "<cmd>lua Snacks.lazygit()<CR>", { desc = "Open lazygit" })
+map("n", "<leader><space>", "<cmd>lua Snacks.picker.smart()<cr>", { desc = "Smart Find Files" })
+map("n", "<leader>:", "<cmd>lua Snacks.picker.command_history()<cr>", { desc = "Command History" })
+map("n", "<leader>fa", "<cmd>lua Snacks.picker.autocmds()<cr>", { desc = "Find autocmds" })
+map("n", "<leader>fb", "<cmd>lua Snacks.picker.buffers()<cr>", { desc = "Find buffers" })
+map("n", "<leader>fc", "<cmd>lua Snacks.picker.commands()<cr>", { desc = "Find commands" })
+map("n", "<leader>fC", function()
+  require("snacks.picker").files { prompt_title = "Config Files", cwd = vim.fn.stdpath "config" }
+end, { desc = "Find config files", silent = true })
+map("n", "<leader>ff", "<cmd>lua Snacks.picker.files()<cr>", { desc = "Find files" })
+map(
+  "n",
+  "<leader>fFA",
+  "<cmd>lua Snacks.picker.files({hidden = true, ignored = true})<cr>",
+  { desc = "Find files (All files)" }
+)
+map("n", "<leader>fh", "<cmd>lua Snacks.picker.help()<cr>", { desc = "Find help" })
+map("n", "<leader>fk", "<cmd>lua Snacks.picker.keymaps()<cr>", { desc = "Find keymaps" })
+map("n", "<leader>fm", "<cmd>lua Snacks.picker.man()<cr>", { desc = "Find man" })
+map("n", "<leader>fo", "<cmd>lua Snacks.picker.recent()<cr>", { desc = "Find old files" })
+map("n", "<leader>fu", "<cmd>lua Snacks.picker.undo()<cr>", { desc = "Undo History" })
+map("n", "<leader>fw", "<cmd>lua Snacks.picker.grep()<cr>", { desc = "Live grep" })
+map(
+  "n",
+  "<leader>fW",
+  "<cmd>lua Snacks.picker.grep({hidden = true, ignored = true})<cr>",
+  { desc = "Live grep (All files)" }
+)
+map(
+  "n",
+  "<leader>f,",
+  "<cmd>lua Snacks.picker.icons({layout = { preset = 'select' }})<cr>",
+  { desc = "Live grep (All files)" }
+)
+map("n", "<leader>f'", "<cmd>lua Snacks.picker.marks()<cr>", { desc = "Find marks" })
+map("n", "<leader>f/", "<cmd>lua Snacks.picker.lines()<cr>", { desc = "Fuzzy find in current buffer" })
+map("n", "<leader>f?", "<cmd>lua Snacks.picker.grep_buffers()<cr>", { desc = "Fuzzy find in open buffers" })
+map("n", "<leader>f<CR>", "<cmd>lua Snacks.picker.resume()<cr>", { desc = "Resume find" })
+map({ "n", "x" }, "<leader>sw", "<cmd>lua Snacks.picker.grep_word()<cr>", { desc = "Search Word (visual or cursor)" })
+map(
+  "n",
+  "<leader>ft",
+  "<cmd>lua Snacks.picker.todo_comments({ keywords = { 'TODO', 'FIX', 'FIXME' }})<cr>",
+  { desc = "Resume find" }
+)
 
 --! -- -- -- nvim-session-manager -- -- -- !--
 wk.add { "<leader>S", desc = "Session Manager" }
