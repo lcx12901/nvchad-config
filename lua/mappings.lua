@@ -165,13 +165,23 @@ map("n", "<a-p>", function()
   Snacks.words.jump(-vim.v.count1, true)
 end, { desc = "Prev Reference" })
 
---! -- -- --  nvim-lspconfig -- -- -- !--
+--! -- -- --  package-info -- -- -- !--
 vim.keymap.del("n", "<leader>n")
 wk.add { "<leader>n", desc = "Package Info" }
 map("n", "<leader>ns", require("package-info").show, { silent = true, noremap = true, desc = "Show package version" })
 map("n", "<leader>nc", require("package-info").hide, { silent = true, noremap = true, desc = "Hidden package version" })
-map("n", "<leader>nt", require("package-info").toggle, { silent = true, noremap = true, desc = "Toggle package version" })
+map(
+  "n",
+  "<leader>nt",
+  require("package-info").toggle,
+  { silent = true, noremap = true, desc = "Toggle package version" }
+)
 map("n", "<leader>nu", require("package-info").update, { silent = true, noremap = true, desc = "update package" })
 map("n", "<leader>nd", require("package-info").delete, { silent = true, noremap = true, desc = "Delete package" })
 map("n", "<leader>ni", require("package-info").install, { silent = true, noremap = true, desc = "Install package" })
-map("n", "<leader>np", require("package-info").change_version, { silent = true, noremap = true, desc = "Change package version" })
+map(
+  "n",
+  "<leader>np",
+  require("package-info").change_version,
+  { silent = true, noremap = true, desc = "Change package version" }
+)

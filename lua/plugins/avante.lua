@@ -41,6 +41,11 @@ return {
       { "<leader>as", "<cmd>AvanteStop<CR>", desc = "Stop Avante" },
       { "<leader>at", "<cmd>AvanteToggle<CR>", desc = "Toggle Avante" },
     },
+
+    config = function()
+      local wk = require "which-key"
+      wk.add { mode = { "n", "v" }, "<leader>a", icon = "", group = "AI Assistant" }
+    end,
   },
   {
     "zbirenbaum/copilot.lua",

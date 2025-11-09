@@ -13,7 +13,7 @@ return {
         ["cmp.entry.get_documentation"] = true,
       },
       progress = { enabled = false },
-      signature = { enabled = true },
+      signature = { enabled = false },
     },
     routes = {
       {
