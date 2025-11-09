@@ -1,9 +1,11 @@
 require("nvchad.configs.lspconfig").defaults()
 
 local servers = {
+  bashls = {},
   nixd = {},
   unocss = {},
   vue_ls = {},
+  yamlls = {},
   ts_ls = {
     init_options = {
       maxTsServerMemory = 16384,
@@ -15,7 +17,6 @@ local servers = {
             vim.fs.dirname(vim.fs.dirname(vim.fn.system "echo -n $(readlink -f $(which vue-language-server))")),
             "/lib/language-tools/packages/language-server"
           ),
-          --
           languages = { "vue" },
         },
       },
