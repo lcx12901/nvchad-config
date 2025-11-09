@@ -4,7 +4,9 @@ return {
   -- disable unuse plugins
   { "mason-org/mason.nvim", enabled = false },
   { "nvim-tree/nvim-tree.lua", enabled = false },
+  { "nvim-telescope/telescope.nvim", enabled = false },
 
+  -- User configurations
   { "stevearc/conform.nvim", opts = require "configs.conform-nvim" },
   { "nvim-treesitter/nvim-treesitter", opts = require "configs.nvim-treesitter" },
   { "folke/snacks.nvim", priority = 1000, lazy = false, opts = require "configs.snacks" },
@@ -30,6 +32,23 @@ return {
     end,
   },
 
+  {
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require("gitsigns").setup {
+        current_line_blame = true,
+
+        current_line_blame_opts = {
+          delay = 500,
+
+          ignore_blank_lines = true,
+          ignore_whitespace = true,
+          virt_text = true,
+          virt_text_pos = "eol",
+        },
+      }
+    end,
+  },
   {
     "folke/lazydev.nvim",
     ft = "lua",
@@ -138,5 +157,11 @@ return {
         vim.diagnostic.config { virtual_text = false }
       end,
     },
+  },
+  {
+    "folke/todo-comments.nvim",
+    event = "BufEnter",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {},
   },
 }

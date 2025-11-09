@@ -50,5 +50,5 @@ vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
         end
       end
     end
-  end
+  end,
 })
