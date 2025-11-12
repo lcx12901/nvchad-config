@@ -15,17 +15,71 @@ return {
       progress = { enabled = false },
       signature = { enabled = false },
     },
+
+    messages = {
+      view = "notify",
+      view_error = "notify",
+      view_warn = "notify",
+    },
+
+    presets = {
+      bottom_search = false,
+      command_palette = true,
+      long_message_to_split = true,
+      inc_rename = true,
+      lsp_doc_border = true,
+    },
+
+    cmdline = {
+      format = {
+        cmdline = {
+          pattern = "^:",
+          icon = " ",
+          lang = "vim",
+          opts = {
+            border = {
+              text = {
+                top = "Cmd",
+              },
+            },
+          },
+        },
+      },
+    },
+
     routes = {
+      -- Skip search_count messages
+      {
+        filter = {
+          event = "msg_show",
+          kind = "search_count",
+        },
+        opts = {
+          skip = true,
+        },
+      },
+      -- Skip annoying "written" messages
+      {
+        filter = {
+          event = "msg_show",
+          find = "written",
+        },
+        opts = {
+          skip = true,
+        },
+      },
+      -- Skip "search hit BOTTOM/TOP" messages
       {
         filter = {
           event = "msg_show",
           any = {
-            { find = "%d+L, %d+B" },
-            { find = "; after #%d+" },
-            { find = "; before #%d+" },
+            { find = "search hit BOTTOM" },
+            { find = "search hit TOP" },
           },
         },
-        view = "mini",
+        opts = {
+          skip = true,
+        },
       },
       {
         filter = {
@@ -39,25 +93,15 @@ return {
           skip = true,
         },
       },
-    },
-    presets = {
-      bottom_search = true,
-      command_palette = true,
-      long_message_to_split = true,
-      inc_rename = true,
-      lsp_doc_border = true,
-    },
-    format = {
-      cmdline = {
-        pattern = "^:",
-        icon = " ",
-        lang = "vim",
+      -- Route long messages (>20 lines) to split
+      {
+        filter = {
+          event = "msg_show",
+          min_height = 20,
+        },
+        view = "split",
         opts = {
-          border = {
-            text = {
-              top = "Cmd",
-            },
-          },
+          enter = true,
         },
       },
     },
