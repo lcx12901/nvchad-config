@@ -106,6 +106,7 @@ map(
   "<cmd>lua Snacks.picker.todo_comments({ keywords = { 'TODO', 'FIX', 'FIXME' }})<cr>",
   { desc = "Resume find" }
 )
+map("n", "<leader>fn", "<cmd>Noice snacks<CR>", {desc = "Noice Snacks"})
 
 --! -- -- -- nvim-session-manager -- -- -- !--
 wk.add { "<leader>S", desc = "Session Manager" }
