@@ -13,7 +13,11 @@ M.base46 = {
 }
 
 M.ui = {
+  tabufline = {
+    order = { "buffers", "tabs" },
+  },
   statusline = {
+    theme = "minimal",
     separator_style = "round",
   },
 }
