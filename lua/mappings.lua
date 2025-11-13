@@ -8,6 +8,13 @@ local wk = require "which-key"
 --! -- -- -- lazy -- -- -- !--
 map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
+
+--! -- -- -- tabufline -- -- -- !--
+vim.keymap.del("n", "<leader>b")
+wk.add { "<leader>b", icon="󰓩", desc = "Buffers" }
+map("n", "<leader>bl", function() require("nvchad.tabufline").closeBufs_at_direction("left") end, { desc = "Close all buffers to the left" })
+map("n", "<leader>br", function() require("nvchad.tabufline").closeBufs_at_direction("right") end, { desc = "Close all buffers to the right" })
+
 map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Switch to normal mode" })
 
 --! -- -- -- better up/down -- -- -- !--
@@ -29,6 +36,7 @@ map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
 map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
 map("v", "<A-j>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
 map("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
+
 
 --! -- -- -- window -- -- -- !--
 map("n", "-", "<C-W>s", { desc = "Split Window Below", remap = true })
@@ -106,7 +114,7 @@ map(
   "<cmd>lua Snacks.picker.todo_comments({ keywords = { 'TODO', 'FIX', 'FIXME' }})<cr>",
   { desc = "Resume find" }
 )
-map("n", "<leader>fn", "<cmd>Noice snacks<CR>", { desc = "Noice Snacks" })
+map("n", "<leader>fn", "<cmd>Noice snacks<CR>", {desc = "Noice Snacks"})
 
 --! -- -- -- nvim-session-manager -- -- -- !--
 wk.add { "<leader>S", desc = "Session Manager" }
