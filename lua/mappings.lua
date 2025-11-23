@@ -8,12 +8,15 @@ local wk = require "which-key"
 --! -- -- -- lazy -- -- -- !--
 map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
-
 --! -- -- -- tabufline -- -- -- !--
 vim.keymap.del("n", "<leader>b")
-wk.add { "<leader>b", icon="󰓩", desc = "Buffers" }
-map("n", "<leader>bl", function() require("nvchad.tabufline").closeBufs_at_direction("left") end, { desc = "Close all buffers to the left" })
-map("n", "<leader>br", function() require("nvchad.tabufline").closeBufs_at_direction("right") end, { desc = "Close all buffers to the right" })
+wk.add { "<leader>b", icon = "󰓩", desc = "Buffers" }
+map("n", "<leader>bl", function()
+  require("nvchad.tabufline").closeBufs_at_direction "left"
+end, { desc = "Close all buffers to the left" })
+map("n", "<leader>br", function()
+  require("nvchad.tabufline").closeBufs_at_direction "right"
+end, { desc = "Close all buffers to the right" })
 
 map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Switch to normal mode" })
 
@@ -36,7 +39,6 @@ map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
 map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
 map("v", "<A-j>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
 map("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
-
 
 --! -- -- -- window -- -- -- !--
 map("n", "-", "<C-W>s", { desc = "Split Window Below", remap = true })
@@ -114,7 +116,7 @@ map(
   "<cmd>lua Snacks.picker.todo_comments({ keywords = { 'TODO', 'FIX', 'FIXME' }})<cr>",
   { desc = "Resume find" }
 )
-map("n", "<leader>fn", "<cmd>Noice snacks<CR>", {desc = "Noice Snacks"})
+map("n", "<leader>fn", "<cmd>Noice snacks<CR>", { desc = "Noice Snacks" })
 
 --! -- -- -- nvim-session-manager -- -- -- !--
 wk.add { "<leader>S", desc = "Session Manager" }
@@ -194,3 +196,20 @@ map(
   require("package-info").change_version,
   { silent = true, noremap = true, desc = "Change package version" }
 )
+
+--! -- -- --  copilot-chat -- -- -- !--
+map("n", "<leader>aCa", "<cmd>CopilotChatAgents<CR>", { desc = "List Available Agents" })
+map("n", "<leader>aCc", "<cmd>CopilotChatClose<CR>", { desc = "Close Chat" })
+map("n", "<leader>aCl", "<cmd>CopilotChatLoad<CR>", { desc = "Load Chat History" })
+map("n", "<leader>aCm", "<cmd>CopilotChatModels<CR>", { desc = "List Available Models" })
+map("n", "<leader>aCo", "<cmd>CopilotChatOpen<CR>", { desc = "Open Chat" })
+map("n", "<leader>aCq", function()
+  local input = vim.fn.input "Quick Chat: "
+  if input ~= "" then
+    require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+  end
+end, { desc = "Quick Chat" })
+map("n", "<leader>aCs", "<cmd>CopilotChatStop<CR>", { desc = "Stop Chat" })
+map("n", "<leader>aCS", "<cmd>CopilotChatSave<CR>", { desc = "Save Chat" })
+map("n", "<leader>aCr", "<cmd>CopilotChatReset<CR>", { desc = "Reset Chat" })
+map("n", "<leader>aCt", "<cmd>CopilotChatToggle<CR>", { desc = "Toggle Chat Window" })
