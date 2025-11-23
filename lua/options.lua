@@ -8,17 +8,19 @@ o.clipboard = "unnamedplus"
 o.cmdheight = 0
 o.autoindent = true
 o.autoread = true
-o.history = 10000
+o.history = 1000
 o.undofile = true
 o.undolevels = 100000
 opt.virtualedit = { "block", "onemore" }
 opt.termguicolors = true
-o.wrap = true
 o.number = true
 o.numberwidth = 4
 o.relativenumber = true
 o.fileencoding = "utf-8"
 o.cursorlineopt = "both"
+o.report = 9001
+o.wrap = true
+o.mouse = ""
 
 opt.completeopt = {
   "fuzzy",
