@@ -6,13 +6,10 @@ return {
     events = { "BufWritePost", "BufReadPost", "InsertLeave" },
     linters_by_ft = {
       nix = { "statix", "deadnix" },
-      typescript = { "eslint_d" },
-      vue = { "eslint_d" },
     },
     linters = {
       statix = { cmd = "statix" },
       deadnix = { cmd = "deadnix" },
-      eslint_d = { cmd = "eslint_d" },
     },
   },
   config = function(_, opts)
