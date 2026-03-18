@@ -17,15 +17,24 @@ local servers = {
   bashls = {},
   nixd = {},
   unocss = {},
-  vue_ls = {},
+  vue_ls = {
+    settings = {
+      vue = {
+        inlayHints = {
+          inlineHandlerLeading = true,
+          missingProps = true,
+          optionsWrapper = true,
+          vBindShorthand = true,
+        },
+      },
+    },
+  },
   eslint = {
     filetypes = {
       "javascript",
       "javascriptreact",
-      "javascript.jsx",
       "typescript",
       "typescriptreact",
-      "typescript.tsx",
       "vue",
       "html",
       "markdown",
@@ -34,15 +43,12 @@ local servers = {
       "yaml",
       "toml",
       "xml",
-      "gql",
       "graphql",
       "astro",
       "svelte",
       "css",
       "less",
       "scss",
-      "pcss",
-      "postcss",
     },
     settings = {
       -- Silent the stylistic rules in your IDE, but still auto fix them
@@ -64,6 +70,16 @@ local servers = {
           languages = { "vue" },
         },
       },
+      preferences = {
+        includeInlayParameterNameHints = "all",
+        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = true,
+        includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayEnumMemberValueHints = true,
+      },
     },
     filetypes = {
       "typescript",
@@ -71,24 +87,6 @@ local servers = {
       "javascriptreact",
       "typescriptreact",
       "vue",
-    },
-    settings = {
-      typescript = {
-        inlayHints = {
-          enumMemberValues = { enabled = true },
-          functionLikeReturnTypes = { enabled = true },
-          parameterNames = {
-            enabled = "all", -- "none" | "literals" | "all"
-            suppressWhenArgumentMatchesName = true,
-          },
-          parameterTypes = { enabled = true },
-          propertyDeclarationTypes = { enabled = true },
-          variableTypes = {
-            enabled = true,
-            suppressWhenTypeMatchesName = true,
-          },
-        },
-      },
     },
   },
 }
@@ -99,10 +97,7 @@ for name, opts in pairs(servers) do
 end
 
 Snacks.util.lsp.on({ method = "textDocument/inlayHint" }, function(buffer)
-  if
-    vim.api.nvim_buf_is_valid(buffer)
-    and vim.bo[buffer].buftype == ""
-  then
+  if vim.api.nvim_buf_is_valid(buffer) and vim.bo[buffer].buftype == "" then
     vim.lsp.inlay_hint.enable(true, { bufnr = buffer })
   end
 end)
