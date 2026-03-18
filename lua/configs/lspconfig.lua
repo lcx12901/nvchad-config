@@ -3,24 +3,10 @@ require("nvchad.configs.lspconfig").defaults()
 local servers = {
   nixd = {},
   unocss = {},
-  emmet_language_server = {
-    filetypes = {
-      "css",
-      "eruby",
-      "html",
-      "javascript",
-      "javascriptreact",
-      "htmldjango",
-      "less",
-      "sass",
-      "scss",
-      "pug",
-      "typescriptreact",
-      "vue",
-    },
-  },
+  vue_ls = {},
   ts_ls = {
     init_options = {
+      maxTsServerMemory = 8192,
       plugins = {
         {
           name = "@vue/typescript-plugin",
@@ -32,6 +18,16 @@ local servers = {
           --
           languages = { "vue" },
         },
+      },
+      preferences = {
+        includeInlayParameterNameHints = "all",
+        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = true,
+        includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayEnumMemberValueHints = true,
       },
     },
     filetypes = {
