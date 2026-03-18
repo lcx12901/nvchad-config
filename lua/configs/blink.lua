@@ -37,6 +37,7 @@ local options = {
   },
   sources = {
     default = {
+      "copilot",
       "lsp",
       "buffer",
       "snippets",
@@ -79,8 +80,9 @@ local options = {
       },
       copilot = {
         name = "copilot",
-        module = "blink-cmp-copilot",
+        module = "blink-copilot",
         score_offset = 100,
+        max_items = 5,
         async = true,
       },
     },

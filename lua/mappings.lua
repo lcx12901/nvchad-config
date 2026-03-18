@@ -8,6 +8,10 @@ local wk = require "which-key"
 --! -- -- -- lazy -- -- -- !--
 map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
+
+--! -- -- -- sidekick -- -- -- !--
+wk.add { "<leader>a", icon = " ", desc = "AI" }
+
 --! -- -- -- tabufline -- -- -- !--
 vim.keymap.del("n", "<leader>b")
 wk.add { "<leader>b", icon = "󰓩", desc = "Buffers" }
@@ -152,7 +156,6 @@ map("i", "<c-k>", function()
 end, { desc = "Signature Help" })
 map({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
 map({ "n", "x" }, "<leader>cc", vim.lsp.codelens.run, { desc = "Run Codelens" })
-map("n", "<leader>cC", vim.lsp.codelens.refresh, { desc = "Refresh & Display Codelens" })
 map("n", "<leader>cR", function()
   Snacks.rename.rename_file()
 end, { desc = "Rename File" })

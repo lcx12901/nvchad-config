@@ -19,7 +19,7 @@ return {
         version = "*",
       },
       "ribru17/blink-cmp-spell",
-      "giuxtaposition/blink-cmp-copilot",
+      "fang2hou/blink-copilot",
     },
     opts = require "configs.blink",
   },
@@ -75,6 +75,15 @@ return {
       library = {
         { path = "snacks.nvim", words = { "Snacks" } },
       },
+    },
+  },
+  {
+    "zbirenbaum/copilot.lua",
+    event = "BufReadPost",
+    opts = {
+      nes = { enabled = false },
+      panel = { enabled = false },
+      suggestion = { enabled = false },
     },
   },
   {
