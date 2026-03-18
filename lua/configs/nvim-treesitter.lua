@@ -4,6 +4,7 @@ local options = {
     "css",
     "scss",
     "html",
+    "html_tags",
     "tsx",
     "javascript",
     "typescript",
