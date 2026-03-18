@@ -44,12 +44,9 @@ local options = {
       "emoji",
       "ripgrep",
       "spell",
-      "avante",
-      "copilot",
     },
     providers = {
       lsp = { score_offset = 4 },
-      avante = { module = "blink-cmp-avante", name = "Avante", score_offset = 100 },
       emoji = {
         module = "blink-emoji",
         name = "Emoji",
