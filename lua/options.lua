@@ -5,6 +5,7 @@ local g = vim.g
 local opt = vim.opt
 
 o.clipboard = "unnamedplus"
+o.winborder = "rounded"
 o.cmdheight = 0
 o.autoindent = true
 o.autoread = true
