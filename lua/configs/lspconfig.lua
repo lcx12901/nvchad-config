@@ -64,16 +64,6 @@ local servers = {
           languages = { "vue" },
         },
       },
-      preferences = {
-        includeInlayParameterNameHints = "all",
-        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-        includeInlayFunctionParameterTypeHints = true,
-        includeInlayVariableTypeHints = true,
-        includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-        includeInlayPropertyDeclarationTypeHints = true,
-        includeInlayFunctionLikeReturnTypeHints = true,
-        includeInlayEnumMemberValueHints = true,
-      },
     },
     filetypes = {
       "typescript",
@@ -81,6 +71,24 @@ local servers = {
       "javascriptreact",
       "typescriptreact",
       "vue",
+    },
+    settings = {
+      typescript = {
+        inlayHints = {
+          enumMemberValues = { enabled = true },
+          functionLikeReturnTypes = { enabled = true },
+          parameterNames = {
+            enabled = "all", -- "none" | "literals" | "all"
+            suppressWhenArgumentMatchesName = true,
+          },
+          parameterTypes = { enabled = true },
+          propertyDeclarationTypes = { enabled = true },
+          variableTypes = {
+            enabled = true,
+            suppressWhenTypeMatchesName = true,
+          },
+        },
+      },
     },
   },
 }
@@ -90,12 +98,12 @@ for name, opts in pairs(servers) do
   vim.lsp.config(name, opts) -- nvim v0.11.0 or above required
 end
 
-Snacks.util.lsp.on({ method = "textDocument/inlayHint" }, function(buffer)
-  if
-    vim.api.nvim_buf_is_valid(buffer)
-    and vim.bo[buffer].buftype == ""
-    and not vim.tbl_contains({ "vue" }, vim.bo[buffer].filetype)
-  then
-    vim.lsp.inlay_hint.enable(true, { bufnr = buffer })
-  end
-end)
+-- Snacks.util.lsp.on({ method = "textDocument/inlayHint" }, function(buffer)
+--   if
+--     vim.api.nvim_buf_is_valid(buffer)
+--     and vim.bo[buffer].buftype == ""
+--     and not vim.tbl_contains({ "vue" }, vim.bo[buffer].filetype)
+--   then
+--     vim.lsp.inlay_hint.enable(true, { bufnr = buffer })
+--   end
+-- end)

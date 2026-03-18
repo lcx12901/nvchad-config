@@ -13,7 +13,8 @@ return {
         ["cmp.entry.get_documentation"] = true,
       },
       progress = { enabled = false },
-      signature = { enabled = false },
+      signature = { enabled = true },
+      hover = { enabled = false },
     },
 
     messages = {
@@ -87,6 +88,7 @@ return {
           any = {
             { find = "No information available" },
             { find = "No signature help available" },
+            { find = "Empty hover response" },
           },
         },
         opts = {

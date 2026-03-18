@@ -19,14 +19,16 @@ return {
         version = "*",
       },
       "ribru17/blink-cmp-spell",
-      "Kaiser-Yang/blink-cmp-avante",
       "giuxtaposition/blink-cmp-copilot",
     },
     opts = require "configs.blink",
   },
   {
     "neovim/nvim-lspconfig",
-    opts = { diagnostics = { virtual_text = false } },
+    opts = {
+      diagnostics = { virtual_text = false },
+      inlay_hints = { enabled = true },
+    },
     config = function()
       require "configs.lspconfig"
     end,
@@ -88,7 +90,7 @@ return {
       }
     end,
   },
-  { "HiPhish/rainbow-delimiters.nvim", event = "User FilePost" },
+  -- { "HiPhish/rainbow-delimiters.nvim", event = "User FilePost" },
   {
     "echasnovski/mini.indentscope",
     version = false,

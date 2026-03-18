@@ -34,6 +34,7 @@ vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
       end
       -- for require("lint").lint() to work, linter.name must be set
       linter.name = linter.name or name
+      ---@diagnostic disable-next-line: undefined-field
       local cwd = linter.required_files
 
       -- if no configuration files are configured, lint
@@ -49,6 +50,15 @@ vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
           end
         end
       end
+    end
+  end,
+})
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client and client.server_capabilities.inlayHintProvider then
+      vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
     end
   end,
 })

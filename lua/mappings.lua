@@ -196,20 +196,3 @@ map(
   require("package-info").change_version,
   { silent = true, noremap = true, desc = "Change package version" }
 )
-
---! -- -- --  copilot-chat -- -- -- !--
-map("n", "<leader>aCa", "<cmd>CopilotChatAgents<CR>", { desc = "List Available Agents" })
-map("n", "<leader>aCc", "<cmd>CopilotChatClose<CR>", { desc = "Close Chat" })
-map("n", "<leader>aCl", "<cmd>CopilotChatLoad<CR>", { desc = "Load Chat History" })
-map("n", "<leader>aCm", "<cmd>CopilotChatModels<CR>", { desc = "List Available Models" })
-map("n", "<leader>aCo", "<cmd>CopilotChatOpen<CR>", { desc = "Open Chat" })
-map("n", "<leader>aCq", function()
-  local input = vim.fn.input "Quick Chat: "
-  if input ~= "" then
-    require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
-  end
-end, { desc = "Quick Chat" })
-map("n", "<leader>aCs", "<cmd>CopilotChatStop<CR>", { desc = "Stop Chat" })
-map("n", "<leader>aCS", "<cmd>CopilotChatSave<CR>", { desc = "Save Chat" })
-map("n", "<leader>aCr", "<cmd>CopilotChatReset<CR>", { desc = "Reset Chat" })
-map("n", "<leader>aCt", "<cmd>CopilotChatToggle<CR>", { desc = "Toggle Chat Window" })
