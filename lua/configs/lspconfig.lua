@@ -18,16 +18,16 @@ local servers = {
   nixd = {},
   unocss = {},
   vue_ls = {
-    settings = {
-      vue = {
-        inlayHints = {
-          inlineHandlerLeading = true,
-          missingProps = true,
-          optionsWrapper = true,
-          vBindShorthand = true,
-        },
-      },
-    },
+    -- settings = {
+    --   vue = {
+    --     inlayHints = {
+    --       inlineHandlerLeading = true,
+    --       missingProps = true,
+    --       optionsWrapper = true,
+    --       vBindShorthand = true,
+    --     },
+    --   },
+    -- },
   },
   eslint = {
     filetypes = {
@@ -70,16 +70,16 @@ local servers = {
           languages = { "vue" },
         },
       },
-      preferences = {
-        includeInlayParameterNameHints = "all",
-        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-        includeInlayFunctionParameterTypeHints = true,
-        includeInlayVariableTypeHints = true,
-        includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-        includeInlayPropertyDeclarationTypeHints = true,
-        includeInlayFunctionLikeReturnTypeHints = true,
-        includeInlayEnumMemberValueHints = true,
-      },
+      -- preferences = {
+      --   includeInlayParameterNameHints = "all",
+      --   includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+      --   includeInlayFunctionParameterTypeHints = true,
+      --   includeInlayVariableTypeHints = true,
+      --   includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+      --   includeInlayPropertyDeclarationTypeHints = true,
+      --   includeInlayFunctionLikeReturnTypeHints = true,
+      --   includeInlayEnumMemberValueHints = true,
+      -- },
     },
     filetypes = {
       "typescript",

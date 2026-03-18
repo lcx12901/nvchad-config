@@ -106,24 +106,6 @@ return {
           enter = true,
         },
       },
-      -- 忽略 inlay hint col out of range 报错 (neovim#36318, vue_ls + vtsls 多客户端 bug)
-      {
-        filter = {
-          event = "notify",
-          kind = "error",
-          find = "Invalid 'col': out of range",
-        },
-        opts = { skip = true },
-      },
-      -- 顺带也忽略 decoration provider 的外层包装错误
-      {
-        filter = {
-          event = "notify",
-          kind = "error",
-          find = "Decoration provider .* win.*inlayhint",
-        },
-        opts = { skip = true },
-      },
     },
   },
   keys = {
