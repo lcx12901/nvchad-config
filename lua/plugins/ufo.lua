@@ -1,6 +1,7 @@
 return {
   "kevinhwang91/nvim-ufo",
-  requires = "kevinhwang91/promise-async",
+  event = "LSPAttach",
+  dependencies = { { "kevinhwang91/promise-async" } },
   config = function()
     vim.o.foldcolumn = "1" -- '0' is not bad
     vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
@@ -10,9 +11,15 @@ return {
     -- Using ufo provider need remap `zR` and `zM`. If Neovim is less than v0.6.1, remap yourself
     vim.keymap.set("n", "zR", require("ufo").openAllFolds, { desc = "Open all folds" })
     vim.keymap.set("n", "zM", require("ufo").closeAllFolds, { desc = "Close all folds" })
-    vim.keymap.set("n", "zr", require("ufo").openFoldsExceptKinds(), { desc = "Fold less" })
-    vim.keymap.set("n", "zm", require("ufo").closeFoldsWith(), { desc = "Fold more" })
-    vim.keymap.set("n", "zp", require("ufo").peekFoldedLinesUnderCursor(), { desc = "Peek fold" })
+    vim.keymap.set("n", "zr", function()
+      require("ufo").openFoldsExceptKinds()
+    end, { desc = "Fold less" })
+    vim.keymap.set("n", "zm", function()
+      require("ufo").closeFoldsWith()
+    end, { desc = "Fold more" })
+    vim.keymap.set("n", "zp", function()
+      require("ufo").peekFoldedLinesUnderCursor()
+    end, { desc = "Peek fold" })
 
     require("ufo").setup {
       provider_selector = function(_, filetype, buftype)
