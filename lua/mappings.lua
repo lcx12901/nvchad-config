@@ -5,6 +5,19 @@ require "nvchad.mappings"
 local map = vim.keymap.set
 local wk = require "which-key"
 
+--! -- -- -- delete keymap -- -- -- !--
+vim.keymap.del("n", "<leader>b")
+vim.keymap.del("n", "<leader>n")
+vim.keymap.del("n", "<leader>fz")
+vim.keymap.del("n", "<leader>gt")
+vim.keymap.del("n", "<leader>th")
+
+--! -- -- -- groups -- -- -- !--
+wk.add { "<leader>a", icon = " ", desc = "AI" }
+wk.add { "<leader>b", icon = " ", desc = "Buffers" }
+wk.add { "<leader>S", icon = "󱛒 ", desc = "Session Manager" }
+wk.add { "<leader>n", icon = " ", desc = "Package Info" }
+
 --! -- -- -- general -- -- -- !--
 map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Switch to normal mode" })
 map("n", "<leader>q", "<cmd>confirm qa<cr>", { desc = "Quit" })
@@ -38,12 +51,8 @@ map("n", "<leader>wd", "<C-W>c", { desc = "Delete Window", remap = true })
 --! -- -- -- lazy -- -- -- !--
 map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
---! -- -- -- sidekick -- -- -- !--
-wk.add { "<leader>a", icon = " ", desc = "AI" }
 
 --! -- -- -- tabufline -- -- -- !--
-vim.keymap.del("n", "<leader>b")
-wk.add { "<leader>b", icon = "󰓩", desc = "Buffers" }
 map("n", "<leader>bl", function()
   require("nvchad.tabufline").closeBufs_at_direction "left"
 end, {
@@ -183,8 +192,6 @@ map("n", "<a-p>", function()
 end, { desc = "Prev Reference" })
 
 --! -- -- --  package-info -- -- -- !--
-vim.keymap.del("n", "<leader>n")
-wk.add { "<leader>n", desc = "Package Info" }
 map("n", "<leader>ns", require("package-info").show, { silent = true, noremap = true, desc = "Show package version" })
 map("n", "<leader>nc", require("package-info").hide, { silent = true, noremap = true, desc = "Hidden package version" })
 map(
