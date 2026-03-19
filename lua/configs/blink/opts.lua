@@ -1,4 +1,4 @@
-local options = {
+return {
   fuzzy = {
     implementation = "rust",
     prebuilt_binaries = {
@@ -88,5 +88,3 @@ local options = {
     },
   },
 }
-
-return options

@@ -1,4 +1,4 @@
-local options = {
+return {
   formatters_by_ft = {
     lua = { "stylua" },
     nix = { "nixfmt" },
@@ -28,5 +28,3 @@ local options = {
 
   format_on_save = false,
 }
-
-return options

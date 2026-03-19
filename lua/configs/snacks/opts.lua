@@ -1,4 +1,4 @@
-local options = {
+return {
   input = { enabled = true },
   notifier = { enabled = true },
   lazygit = { enabled = true },
@@ -44,5 +44,3 @@ local options = {
     },
   },
 }
-
-return options

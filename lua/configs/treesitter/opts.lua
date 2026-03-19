@@ -1,4 +1,4 @@
-local options = {
+return {
   ensure_installed = {
     "bash",
     "css",
@@ -23,5 +23,3 @@ local options = {
     "ini",
   },
 }
-
-return options
