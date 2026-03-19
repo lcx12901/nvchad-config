@@ -1,15 +1,23 @@
 return {
   { import = "nvchad.blink.lazyspec" },
 
-  -- disable unuse plugins
+  -- disable unused plugins
   { "mason-org/mason.nvim", enabled = false },
   { "nvim-tree/nvim-tree.lua", enabled = false },
   { "nvim-telescope/telescope.nvim", enabled = false },
+  { "lukas-reineke/indent-blankline.nvim", enabled = false },
 
-  -- User configurations
+  -- user configurations
   { "stevearc/conform.nvim", opts = require "configs.conform-nvim" },
   { "nvim-treesitter/nvim-treesitter", opts = require "configs.nvim-treesitter" },
   { "folke/snacks.nvim", priority = 1000, lazy = false, opts = require "configs.snacks" },
+  { "wakatime/vim-wakatime", lazy = false },
+  {
+    "m4xshen/hardtime.nvim",
+    lazy = false,
+    dependencies = { "MunifTanjim/nui.nvim" },
+    opts = {},
+  },
   {
     "saghen/blink.cmp",
     dependencies = {
@@ -24,6 +32,22 @@ return {
     opts = require "configs.blink",
   },
   {
+    "folke/lazydev.nvim",
+    ft = "lua",
+    cmd = "LazyDev",
+    opts = {
+      library = {
+        { path = "snacks.nvim", words = { "Snacks" } },
+      },
+    },
+  },
+  {
+    "folke/todo-comments.nvim",
+    event = "BufEnter",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {},
+  },
+  {
     "neovim/nvim-lspconfig",
     opts = {
       diagnostics = { virtual_text = false },
@@ -33,7 +57,23 @@ return {
       require "configs.lspconfig"
     end,
   },
+  {
+    "rachartier/tiny-inline-diagnostic.nvim",
+    event = "LspAttach",
+    priority = 1000,
+    config = function()
+      require("tiny-inline-diagnostic").setup {
+        preset = "ghost",
+        options = {
+          add_messages = false,
+          multilines = { enabled = true },
+          show_source = { enabled = true },
+        },
+      }
 
+      vim.diagnostic.config { virtual_text = false }
+    end,
+  },
   {
     "dmmulroy/ts-error-translator.nvim",
     config = function()
@@ -49,6 +89,15 @@ return {
         },
       }
     end,
+  },
+  {
+    "zbirenbaum/copilot.lua",
+    event = "BufReadPost",
+    opts = {
+      nes = { enabled = false },
+      panel = { enabled = false },
+      suggestion = { enabled = false },
+    },
   },
   {
     "lewis6991/gitsigns.nvim",
@@ -68,25 +117,6 @@ return {
     end,
   },
   {
-    "folke/lazydev.nvim",
-    ft = "lua",
-    cmd = "LazyDev",
-    opts = {
-      library = {
-        { path = "snacks.nvim", words = { "Snacks" } },
-      },
-    },
-  },
-  {
-    "zbirenbaum/copilot.lua",
-    event = "BufReadPost",
-    opts = {
-      nes = { enabled = false },
-      panel = { enabled = false },
-      suggestion = { enabled = false },
-    },
-  },
-  {
     "Shatur/neovim-session-manager",
     event = "BufEnter",
     dependencies = { "stevearc/dressing.nvim", "nvim-lua/plenary.nvim" },
@@ -100,18 +130,6 @@ return {
     end,
   },
   -- { "HiPhish/rainbow-delimiters.nvim", event = "User FilePost" },
-  {
-    "echasnovski/mini.indentscope",
-    version = false,
-    event = "User FilePost",
-    opts = {
-      symbol = "╎",
-      options = { try_as_border = true },
-    },
-    config = function(_, opts)
-      require("mini.indentscope").setup(opts)
-    end,
-  },
   {
     "MagicDuck/grug-far.nvim",
     cmd = "GrugFar",
@@ -144,7 +162,6 @@ return {
       require("nvim-ts-autotag").setup {}
     end,
   },
-  { "wakatime/vim-wakatime", lazy = false },
   {
     "rmagatti/goto-preview",
     dependencies = { "rmagatti/logger.nvim" },
@@ -167,34 +184,22 @@ return {
     end,
   },
   {
-    {
-      "rachartier/tiny-inline-diagnostic.nvim",
-      event = "LspAttach",
-      priority = 1000,
-      config = function()
-        require("tiny-inline-diagnostic").setup {
-          preset = "ghost",
-          options = {
-            add_messages = false,
-            multilines = { enabled = true },
-            show_source = { enabled = true },
-          },
-        }
-
-        vim.diagnostic.config { virtual_text = false }
-      end,
+    "saghen/blink.indent",
+    event = { "BufReadPost", "BufNewFile" },
+    opts = {
+      scope = {
+        enabled = true,
+        char = "▎",
+        priority = 1000,
+        highlights = {
+          "BlinkIndentOrange",
+          "BlinkIndentYellow",
+          "BlinkIndentGreen",
+          "BlinkIndentCyan",
+          "BlinkIndentBlue",
+          "BlinkIndentViolet",
+        },
+      },
     },
-  },
-  {
-    "folke/todo-comments.nvim",
-    event = "BufEnter",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    opts = {},
-  },
-  {
-    "m4xshen/hardtime.nvim",
-    lazy = false,
-    dependencies = { "MunifTanjim/nui.nvim" },
-    opts = {},
   },
 }

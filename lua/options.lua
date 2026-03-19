@@ -24,10 +24,9 @@ o.wrap = true
 o.mouse = ""
 
 opt.completeopt = {
-  "fuzzy",
+  "menu",
   "menuone",
   "noselect",
-  "popup",
 }
 
 if g.neovide then

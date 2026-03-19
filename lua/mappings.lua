@@ -46,7 +46,9 @@ vim.keymap.del("n", "<leader>b")
 wk.add { "<leader>b", icon = "󰓩", desc = "Buffers" }
 map("n", "<leader>bl", function()
   require("nvchad.tabufline").closeBufs_at_direction "left"
-end, { desc = "Close all buffers to the left" })
+end, {
+  desc = "Close all buffers to the left",
+})
 map("n", "<leader>br", function()
   require("nvchad.tabufline").closeBufs_at_direction "right"
 end, { desc = "Close all buffers to the right" })
