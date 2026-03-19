@@ -47,7 +47,7 @@ local options = {
       "spell",
     },
     providers = {
-      lsp = { score_offset = 4 },
+      lsp = { score_offset = 50 },
       emoji = {
         module = "blink-emoji",
         name = "Emoji",
