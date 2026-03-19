@@ -23,12 +23,14 @@ return {
     },
     opts = require "configs.blink.opts",
   },
-  {"folke/lazydev.nvim", ft = "lua", cmd = "LazyDev", opts = require "configs.lazydev.opts"},
+  { "folke/lazydev.nvim", ft = "lua", cmd = "LazyDev", opts = require "configs.lazydev.opts" },
   { "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" }, event = "BufEnter" },
   {
     "neovim/nvim-lspconfig",
     opts = require "configs.lspconfig.opts",
-    config = function() require "configs.lspconfig.config" end,
+    config = function()
+      require "configs.lspconfig.config"
+    end,
   },
   {
     "rachartier/tiny-inline-diagnostic.nvim",
@@ -38,9 +40,19 @@ return {
       require "configs.tiny-inline-diagnostic.config"
     end,
   },
-  {"dmmulroy/ts-error-translator.nvim", config = function() require "configs.ts-error-translator.config" end},
-  {"zbirenbaum/copilot.lua", event = "BufReadPost", opts = require "configs.copilot-lua.opts"},
-  {"lewis6991/gitsigns.nvim", config = function() require "configs.gitsigns.config" end},
+  {
+    "dmmulroy/ts-error-translator.nvim",
+    config = function()
+      require "configs.ts-error-translator.config"
+    end,
+  },
+  { "zbirenbaum/copilot.lua", event = "BufReadPost", opts = require "configs.copilot-lua.opts" },
+  {
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require "configs.gitsigns.config"
+    end,
+  },
   {
     "Shatur/neovim-session-manager",
     event = "BufEnter",
@@ -50,7 +62,13 @@ return {
     end,
   },
   -- { "HiPhish/rainbow-delimiters.nvim", event = "User FilePost" },
-  {"MagicDuck/grug-far.nvim", cmd = "GrugFar", config = function() require("grug-far").setup {} end},
+  {
+    "MagicDuck/grug-far.nvim",
+    cmd = "GrugFar",
+    config = function()
+      require("grug-far").setup {}
+    end,
+  },
   {
     "Wansmer/treesj",
     keys = { "<space>m", "<space>j", "<space>s" },
@@ -60,8 +78,14 @@ return {
       require("treesj").setup {}
     end,
   },
-  {"windwp/nvim-autopairs", event = "InsertEnter", opts = require "configs.autopairs.opts"},
-  {"windwp/nvim-ts-autotag", event = "BufEnter", config = function() require("nvim-ts-autotag").setup {} end},
+  { "windwp/nvim-autopairs", event = "InsertEnter", opts = require "configs.autopairs.opts" },
+  {
+    "windwp/nvim-ts-autotag",
+    event = "BufEnter",
+    config = function()
+      require("nvim-ts-autotag").setup {}
+    end,
+  },
   {
     "rmagatti/goto-preview",
     dependencies = { "rmagatti/logger.nvim" },
@@ -83,5 +107,5 @@ return {
       }
     end,
   },
-  {"saghen/blink.indent", event = {"BufReadPost", "BufNewFile"}, opts = require "configs.blink-indent.opts"},
+  { "saghen/blink.indent", event = { "BufReadPost", "BufNewFile" }, opts = require "configs.blink-indent.opts" },
 }
