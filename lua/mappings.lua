@@ -1,28 +1,14 @@
 --! -- -- -- default mappings -- -- -- !--
 require "nvchad.mappings"
 
---! -- -- -- custom mappings -- -- -- !--
+--! -- -- -- helpers -- -- -- !--
 local map = vim.keymap.set
 local wk = require "which-key"
 
---! -- -- -- lazy -- -- -- !--
-map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
-
-
---! -- -- -- sidekick -- -- -- !--
-wk.add { "<leader>a", icon = " ", desc = "AI" }
-
---! -- -- -- tabufline -- -- -- !--
-vim.keymap.del("n", "<leader>b")
-wk.add { "<leader>b", icon = "󰓩", desc = "Buffers" }
-map("n", "<leader>bl", function()
-  require("nvchad.tabufline").closeBufs_at_direction "left"
-end, { desc = "Close all buffers to the left" })
-map("n", "<leader>br", function()
-  require("nvchad.tabufline").closeBufs_at_direction "right"
-end, { desc = "Close all buffers to the right" })
-
+--! -- -- -- general -- -- -- !--
 map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Switch to normal mode" })
+map("n", "<leader>q", "<cmd>confirm qa<cr>", { desc = "Quit" })
+map("n", "<leader>Q", "<cmd>qa!<cr>", { desc = "Force Quit" })
 
 --! -- -- -- better up/down -- -- -- !--
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
@@ -48,6 +34,22 @@ map("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", {
 map("n", "-", "<C-W>s", { desc = "Split Window Below", remap = true })
 map("n", "|", "<C-W>v", { desc = "Split Window Right", remap = true })
 map("n", "<leader>wd", "<C-W>c", { desc = "Delete Window", remap = true })
+
+--! -- -- -- lazy -- -- -- !--
+map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
+
+--! -- -- -- sidekick -- -- -- !--
+wk.add { "<leader>a", icon = " ", desc = "AI" }
+
+--! -- -- -- tabufline -- -- -- !--
+vim.keymap.del("n", "<leader>b")
+wk.add { "<leader>b", icon = "󰓩", desc = "Buffers" }
+map("n", "<leader>bl", function()
+  require("nvchad.tabufline").closeBufs_at_direction "left"
+end, { desc = "Close all buffers to the left" })
+map("n", "<leader>br", function()
+  require("nvchad.tabufline").closeBufs_at_direction "right"
+end, { desc = "Close all buffers to the right" })
 
 --! -- -- -- conform -- -- -- !--
 map("n", "<leader>cf", function()
@@ -124,7 +126,6 @@ map("n", "<leader>fn", "<cmd>Noice snacks<CR>", { desc = "Noice Snacks" })
 
 --! -- -- -- nvim-session-manager -- -- -- !--
 wk.add { "<leader>S", desc = "Session Manager" }
-
 map("n", "<leader>SF", ":SessionManager load_session<CR>", { desc = "Load Session" })
 map("n", "<leader>SD", ":SessionManager delete_session<CR>", { desc = "Delete Session" })
 map("n", "<leader>SS", ":SessionManager save_current_session<CR>", { desc = "Save Session" })
