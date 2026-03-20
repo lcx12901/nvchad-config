@@ -1,7 +1,5 @@
-return {
-  "nvim-treesitter/nvim-treesitter-context",
-  event = "BufEnter",
-  opts = {
+return function()
+  require("treesitter-context").setup {
     enable = true,
     max_lines = 0,
     min_window_height = 0,
@@ -11,8 +9,5 @@ return {
     mode = "cursor",
     separator = "-",
     zindex = 20,
-  },
-  config = function(_, opts)
-    require("treesitter-context").setup(opts)
-  end,
-}
+  }
+end
