@@ -103,4 +103,27 @@ return {
     dependencies = { { "kevinhwang91/promise-async" } },
     config = require "configs.ufo.config",
   },
+  { "folke/flash.nvim", event = "VeryLazy", keys = require "configs.flash.keys" },
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    branch = "main",
+    event = "VeryLazy",
+    opts = require "configs.treesitter-textobjects.opts",
+    config = require "configs.treesitter-textobjects.config",
+  },
+  {
+    "mikavilpas/yazi.nvim",
+    version = "*", -- use the latest stable version
+    event = "VeryLazy",
+    dependencies = {
+      { "nvim-lua/plenary.nvim", lazy = true },
+    },
+    keys = require "configs.yazi.keys",
+    opts = require "configs.yazi.opts",
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    event = "BufEnter",
+    config = require "configs.treesitter-context.config",
+  },
 }
