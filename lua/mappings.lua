@@ -51,7 +51,6 @@ map("n", "<leader>wd", "<C-W>c", { desc = "Delete Window", remap = true })
 --! -- -- -- lazy -- -- -- !--
 map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
-
 --! -- -- -- tabufline -- -- -- !--
 map("n", "<leader>bl", function()
   require("nvchad.tabufline").closeBufs_at_direction "left"
@@ -61,6 +60,9 @@ end, {
 map("n", "<leader>br", function()
   require("nvchad.tabufline").closeBufs_at_direction "right"
 end, { desc = "Close all buffers to the right" })
+map("n", "<leader>bc", function()
+  require("nvchad.tabufline").closeAllBufs(false)
+end, { desc = "Close other buffers" })
 
 --! -- -- -- conform -- -- -- !--
 map("n", "<leader>cf", function()
@@ -136,7 +138,6 @@ map(
 map("n", "<leader>fn", "<cmd>Noice snacks<CR>", { desc = "Noice Snacks" })
 
 --! -- -- -- nvim-session-manager -- -- -- !--
-wk.add { "<leader>S", desc = "Session Manager" }
 map("n", "<leader>SF", ":SessionManager load_session<CR>", { desc = "Load Session" })
 map("n", "<leader>SD", ":SessionManager delete_session<CR>", { desc = "Delete Session" })
 map("n", "<leader>SS", ":SessionManager save_current_session<CR>", { desc = "Save Session" })
@@ -149,10 +150,18 @@ map("n", "<leader>rg", "<cmd>GrugFar<CR>", { desc = "GrugFar toggle" })
 map("n", "<leader>cl", function()
   Snacks.picker.lsp_config()
 end, { desc = "Lsp Info" })
-map("n", "gd", vim.lsp.buf.definition, { desc = "Goto Definition" })
-map("n", "gr", vim.lsp.buf.references, { desc = "References", nowait = true })
-map("n", "gI", vim.lsp.buf.implementation, { desc = "Goto Implementation" })
-map("n", "gy", vim.lsp.buf.type_definition, { desc = "Goto Type Definition" })
+map("n", "gd", function()
+  Snacks.picker.lsp_definitions()
+end, { desc = "Goto Definition" })
+map("n", "gr", function()
+  Snacks.picker.lsp_references()
+end, { desc = "References", nowait = true })
+map("n", "gI", function()
+  Snacks.picker.lsp_implementations()
+end, { desc = "Goto Implementation" })
+map("n", "gy", function()
+  Snacks.picker.lsp_type_definitions()
+end, { desc = "Goto Type Definition" })
 map("n", "gD", vim.lsp.buf.declaration, { desc = "Goto Declaration" })
 map("n", "K", function()
   return vim.lsp.buf.hover()
@@ -173,10 +182,7 @@ map("n", "<leader>cR", function()
 end, { desc = "Rename File" })
 map("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename" })
 map("n", "<leader>cA", function()
-  vim.lsp.buf.code_action { apply = true, context = {
-    only = { "source" },
-    diagnostics = {},
-  } }
+  vim.lsp.buf.code_action { apply = true, context = { only = { "source" }, diagnostics = {} } }
 end, { desc = "Source Action" })
 map("n", "]]", function()
   Snacks.words.jump(vim.v.count1)

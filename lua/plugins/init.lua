@@ -25,41 +25,21 @@ return {
   },
   { "folke/lazydev.nvim", ft = "lua", cmd = "LazyDev", opts = require "configs.lazydev.opts" },
   { "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" }, event = "BufEnter" },
-  {
-    "neovim/nvim-lspconfig",
-    opts = require "configs.lspconfig.opts",
-    config = function()
-      require "configs.lspconfig.config"
-    end,
-  },
+  { "neovim/nvim-lspconfig", opts = require "configs.lspconfig.opts", config = require "configs.lspconfig.config" },
   {
     "rachartier/tiny-inline-diagnostic.nvim",
     event = "LspAttach",
     priority = 1000,
-    config = function()
-      require "configs.tiny-inline-diagnostic.config"
-    end,
+    config = require "configs.tiny-inline-diagnostic.config",
   },
-  {
-    "dmmulroy/ts-error-translator.nvim",
-    config = function()
-      require "configs.ts-error-translator.config"
-    end,
-  },
+  { "dmmulroy/ts-error-translator.nvim", config = require "configs.ts-error-translator.config" },
   { "zbirenbaum/copilot.lua", event = "BufReadPost", opts = require "configs.copilot-lua.opts" },
-  {
-    "lewis6991/gitsigns.nvim",
-    config = function()
-      require "configs.gitsigns.config"
-    end,
-  },
+  { "lewis6991/gitsigns.nvim", config = require "configs.gitsigns.config" },
   {
     "Shatur/neovim-session-manager",
     event = "BufEnter",
     dependencies = { "stevearc/dressing.nvim", "nvim-lua/plenary.nvim" },
-    config = function()
-      require "configs.session-manager.config"
-    end,
+    config = require "configs.session-manager.config",
   },
   -- { "HiPhish/rainbow-delimiters.nvim", event = "User FilePost" },
   {
@@ -71,7 +51,7 @@ return {
   },
   {
     "Wansmer/treesj",
-    keys = { "<space>m", "<space>j", "<space>s" },
+    keys = { "<space>m" },
     event = "BufEnter",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
@@ -91,9 +71,7 @@ return {
     dependencies = { "rmagatti/logger.nvim" },
     event = "BufEnter",
     config = function()
-      require("goto-preview").setup {
-        default_mappings = true,
-      }
+      require("goto-preview").setup { default_mappings = true }
     end,
   },
   {
@@ -101,11 +79,28 @@ return {
     dependencies = { "MunifTanjim/nui.nvim" },
     event = "BufEnter",
     config = function()
-      require("package-info").setup {
-        hide_up_to_date = true,
-        package_manager = "pnpm",
-      }
+      require("package-info").setup { hide_up_to_date = true, package_manager = "pnpm" }
     end,
   },
   { "saghen/blink.indent", event = { "BufReadPost", "BufNewFile" }, opts = require "configs.blink-indent.opts" },
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
+    opts = require "configs.noice.opts",
+    keys = require "configs.noice.keys",
+  },
+  {
+    "mfussenegger/nvim-lint",
+    event = "VeryLazy",
+    opts = require "configs.lint.opts",
+    config = require "configs.lint.config",
+  },
+  { "folke/sidekick.nvim", keys = require "configs.sidekick.keys" },
+  {
+    "kevinhwang91/nvim-ufo",
+    event = "LSPAttach",
+    dependencies = { { "kevinhwang91/promise-async" } },
+    config = require "configs.ufo.config",
+  },
 }
