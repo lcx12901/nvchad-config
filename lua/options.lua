@@ -29,6 +29,8 @@ opt.completeopt = {
   "noselect",
 }
 
+g.loaded_netrwPlugin = 1
+
 if g.neovide then
   g.neovide_hide_mouse_when_typing = true
   g.neovide_no_idle = true
