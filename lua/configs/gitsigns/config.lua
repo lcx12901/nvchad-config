@@ -1,12 +1,14 @@
-require("gitsigns").setup {
-  current_line_blame = true,
+return function()
+  require("gitsigns").setup {
+    current_line_blame = true,
 
-  current_line_blame_opts = {
-    delay = 500,
+    current_line_blame_opts = {
+      delay = 500,
 
-    ignore_blank_lines = true,
-    ignore_whitespace = true,
-    virt_text = true,
-    virt_text_pos = "eol",
-  },
-}
+      ignore_blank_lines = true,
+      ignore_whitespace = true,
+      virt_text = true,
+      virt_text_pos = "eol",
+    },
+  }
+end
