@@ -9,6 +9,7 @@ local wk = require "which-key"
 vim.keymap.del("n", "<leader>b")
 vim.keymap.del("n", "<leader>n")
 vim.keymap.del("n", "<leader>fz")
+vim.keymap.del("n", "<leader>ma")
 vim.keymap.del("n", "<leader>gt")
 vim.keymap.del("n", "<leader>th")
 
@@ -68,26 +69,6 @@ end, { desc = "Close other buffers" })
 map("n", "<leader>cf", function()
   require("conform").format { async = true, lsp_fallback = true }
 end, { desc = "conform format file" })
-
---! -- -- -- minty -- -- -- !--
-wk.add {
-  "<leader>ms",
-  function()
-    require("minty.shades").open()
-  end,
-  mode = "n",
-  icon = { icon = "", color = "green" },
-  desc = "minty open shades tool",
-}
-wk.add {
-  "<leader>mh",
-  function()
-    require("minty.huefy").open()
-  end,
-  mode = "n",
-  icon = { icon = "", color = "green" },
-  desc = "minty open huefy tool",
-}
 
 --! -- -- -- snacks -- -- -- !--
 map("n", "<leader>tl", "<cmd>lua Snacks.lazygit()<CR>", { desc = "Open lazygit" })

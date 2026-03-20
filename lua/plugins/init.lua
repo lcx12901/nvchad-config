@@ -4,6 +4,7 @@ return {
   { "nvim-tree/nvim-tree.lua", enabled = false },
   { "nvim-telescope/telescope.nvim", enabled = false },
   { "lukas-reineke/indent-blankline.nvim", enabled = false },
+  { "nvzone/minty", enabled = false },
 
   { import = "nvchad.blink.lazyspec" },
 
@@ -51,11 +52,15 @@ return {
   },
   {
     "Wansmer/treesj",
-    keys = { "<space>m" },
+    keys = {
+      { "<leader>m", "<cmd>TSJToggle<cr>", desc = "Toggle Treesj" },
+    },
     event = "BufEnter",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
-      require("treesj").setup {}
+      require("treesj").setup {
+        use_default_keymaps = false,
+      }
     end,
   },
   { "windwp/nvim-autopairs", event = "InsertEnter", opts = require "configs.autopairs.opts" },
