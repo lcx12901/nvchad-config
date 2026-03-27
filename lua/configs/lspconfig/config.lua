@@ -18,6 +18,8 @@ return function()
     bashls = {},
     nixd = {},
     unocss = {},
+    yamlls = {},
+    prismals = {},
     vue_ls = {
       -- settings = {
       --   vue = {
@@ -56,7 +58,6 @@ return function()
         rulesCustomizations = customizations,
       },
     },
-    yamlls = {},
     ts_ls = {
       init_options = {
         maxTsServerMemory = 16384,
