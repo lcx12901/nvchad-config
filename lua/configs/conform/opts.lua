@@ -4,6 +4,7 @@ return {
     nix = { "nixfmt" },
     typescript = { "eslint_d" },
     vue = { "eslint_d" },
+    markdown = { "deno_fmt" },
   },
 
   formatters = {
