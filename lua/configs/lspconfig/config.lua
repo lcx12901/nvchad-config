@@ -20,6 +20,7 @@ return function()
     unocss = {},
     yamlls = {},
     prismals = {},
+    marksman = {},
     vue_ls = {
       -- settings = {
       --   vue = {
