@@ -15,12 +15,16 @@ return function()
   }
 
   local servers = {
+    emmylua_ls = {},
     bashls = {},
     nixd = {},
     unocss = {},
     yamlls = {},
     prismals = {},
     marksman = {},
+    lua_ls = {
+      enable = false,
+    },
     vue_ls = {
       -- settings = {
       --   vue = {
@@ -95,8 +99,11 @@ return function()
   }
 
   for name, opts in pairs(servers) do
-    vim.lsp.enable(name) -- nvim v0.11.0 or above required
-    vim.lsp.config(name, opts) -- nvim v0.11.0 or above required
+    --  只有opts.enable不为false才启用lsp
+    if opts.enable ~= false then
+      vim.lsp.enable(name) -- nvim v0.11.0 or above required
+      vim.lsp.config(name, opts)
+    end
   end
 
   Snacks.util.lsp.on({ method = "textDocument/inlayHint" }, function(buffer)
