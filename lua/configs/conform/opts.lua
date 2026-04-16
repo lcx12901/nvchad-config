@@ -2,6 +2,7 @@ return {
   formatters_by_ft = {
     lua = { "stylua" },
     nix = { "nixfmt" },
+    rust = { "rustfmt" },
     typescript = { "eslint_d" },
     vue = { "eslint_d" },
     markdown = { "deno_fmt" },

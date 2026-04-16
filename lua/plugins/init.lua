@@ -21,6 +21,13 @@ return {
   },
   { "folke/lazydev.nvim", ft = "lua", cmd = "LazyDev", opts = require "configs.lazydev.opts" },
   { "neovim/nvim-lspconfig", opts = require "configs.lspconfig.opts", config = require "configs.lspconfig.config" },
+  {
+    "mrcjkb/rustaceanvim",
+    lazy = false,
+    init = function()
+      vim.g.rustaceanvim = require "configs.rustaceanvim.opts"
+    end,
+  },
   { "zbirenbaum/copilot.lua", event = "BufReadPost", opts = require "configs.copilot-lua.opts" },
 
   -- treesitter

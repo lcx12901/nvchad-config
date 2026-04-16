@@ -13,6 +13,7 @@ return {
     "nix",
     "prisma",
     "python",
+    "rust",
     "sql",
     "toml",
     "tsx",
