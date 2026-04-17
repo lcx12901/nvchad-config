@@ -46,23 +46,8 @@ return {
       map("n", "<leader>zW", rust_analyzer_command "reloadSettings", "Reload rust-analyzer Settings")
 
       if client:supports_method("textDocument/codeLens") and vim.lsp.codelens then
-        local group = vim.api.nvim_create_augroup("rustaceanvim_codelens_" .. bufnr, { clear = true })
-
-        local refresh_codelens = function()
-          if vim.api.nvim_buf_is_valid(bufnr) then
-            vim.lsp.codelens.refresh {
-              bufnr = bufnr,
-            }
-          end
-        end
-
-        refresh_codelens()
-
-        vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
-          group = group,
-          buffer = bufnr,
-          callback = refresh_codelens,
-          desc = "Refresh Rust code lens",
+        vim.lsp.codelens.enable(true, {
+          bufnr = bufnr,
         })
       end
     end,
