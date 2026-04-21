@@ -105,7 +105,7 @@ return {
       require("nvim-ts-autotag").setup {}
     end,
   },
-  { "m4xshen/hardtime.nvim", dependencies = { "MunifTanjim/nui.nvim" }, lazy = false },
+  { "m4xshen/hardtime.nvim", dependencies = { "MunifTanjim/nui.nvim" }, lazy = false, opts = {} },
   { "folke/flash.nvim", event = "VeryLazy", keys = require "configs.flash.keys" },
   {
     "MagicDuck/grug-far.nvim",
