@@ -5,6 +5,68 @@ require "nvchad.mappings"
 local map = vim.keymap.set
 local wk = require "which-key"
 
+local function feedable(key)
+  return vim.api.nvim_replace_termcodes(key, true, true, true)
+end
+
+local function has_words_before()
+  local line, col = table.unpack(vim.api.nvim_win_get_cursor(0))
+
+  if col == 0 then
+    return false
+  end
+
+  local current_line = vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1] or ""
+  return current_line:sub(col, col):match "%s" == nil
+end
+
+local function blink_tab_complete(reverse)
+  local ok, blink = pcall(require, "blink.cmp")
+
+  if not ok then
+    return false
+  end
+
+  if blink.is_visible() then
+    if reverse then
+      blink.select_prev()
+    else
+      blink.select_next()
+    end
+
+    return true
+  end
+
+  if not reverse and has_words_before() then
+    blink.show()
+    return true
+  end
+
+  return false
+end
+
+local function sidekick_jump_or_apply()
+  local ok, sidekick = pcall(require, "sidekick")
+
+  if not ok then
+    return false
+  end
+
+  return sidekick.nes_jump_or_apply()
+end
+
+local function handle_insert_tab(key, reverse)
+  if not reverse and sidekick_jump_or_apply() then
+    return ""
+  end
+
+  if blink_tab_complete(reverse) then
+    return ""
+  end
+
+  return feedable(key)
+end
+
 --! -- -- -- delete keymap -- -- -- !--
 vim.keymap.del("n", "<leader>b")
 vim.keymap.del("n", "<leader>n")
@@ -23,6 +85,14 @@ wk.add { "<leader>n", icon = " ", desc = "Package Info" }
 map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Switch to normal mode" })
 map("n", "<leader>q", "<cmd>confirm qa<cr>", { desc = "Quit" })
 map("n", "<leader>Q", "<cmd>qa!<cr>", { desc = "Force Quit" })
+map("i", "<Tab>", function()
+  return handle_insert_tab("<Tab>", false)
+end, { desc = "Indent or trigger completion", expr = true })
+map("i", "<S-Tab>", function()
+  return handle_insert_tab("<S-Tab>", true)
+end, { desc = "Reverse completion or outdent", expr = true })
+map("v", "<Tab>", ">gv", { desc = "Indent Line", remap = true })
+map("v", "<S-Tab>", "<gv", { desc = "Outdent Line", remap = true })
 
 --! -- -- -- better up/down -- -- -- !--
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
