@@ -10,7 +10,8 @@ local function feedable(key)
 end
 
 local function has_words_before()
-  local line, col = table.unpack(vim.api.nvim_win_get_cursor(0))
+  local cursor = vim.api.nvim_win_get_cursor(0)
+  local line, col = cursor[1], cursor[2]
 
   if col == 0 then
     return false
