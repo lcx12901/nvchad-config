@@ -15,7 +15,6 @@ return {
       "moyiz/blink-emoji.nvim",
       { "mikavilpas/blink-ripgrep.nvim", version = "*" },
       "ribru17/blink-cmp-spell",
-      "fang2hou/blink-copilot",
     },
     opts = require "configs.blink.opts",
   },
@@ -28,7 +27,6 @@ return {
       vim.g.rustaceanvim = require "configs.rustaceanvim.opts"
     end,
   },
-  { "zbirenbaum/copilot.lua", event = "BufReadPost", opts = require "configs.copilot-lua.opts" },
 
   -- treesitter
   { "nvim-treesitter/nvim-treesitter", opts = require "configs.treesitter.opts" },

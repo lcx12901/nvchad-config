@@ -37,7 +37,6 @@ return {
   },
   sources = {
     default = {
-      "copilot",
       "lsp",
       "buffer",
       "snippets",
@@ -77,13 +76,6 @@ return {
         module = "blink-cmp-spell",
         name = "Spell",
         score_offset = 1,
-      },
-      copilot = {
-        name = "copilot",
-        module = "blink-copilot",
-        score_offset = 100,
-        max_items = 5,
-        async = true,
       },
     },
   },
