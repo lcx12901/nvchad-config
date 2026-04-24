@@ -12,11 +12,24 @@ return {
   {
     "saghen/blink.cmp",
     dependencies = {
+      "Exafunction/windsurf.nvim",
       "moyiz/blink-emoji.nvim",
       { "mikavilpas/blink-ripgrep.nvim", version = "*" },
       "ribru17/blink-cmp-spell",
     },
     opts = require "configs.blink.opts",
+  },
+  {
+    "Exafunction/windsurf.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    event = "InsertEnter",
+    opts = {
+      enable_chat = false,
+      enable_cmp_source = false,
+    },
+    config = function(_, opts)
+      require("codeium").setup(opts)
+    end,
   },
   { "folke/lazydev.nvim", ft = "lua", cmd = "LazyDev", opts = require "configs.lazydev.opts" },
   { "neovim/nvim-lspconfig", opts = require "configs.lspconfig.opts", config = require "configs.lspconfig.config" },

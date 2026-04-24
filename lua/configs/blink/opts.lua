@@ -41,11 +41,18 @@ return {
       "buffer",
       "snippets",
       "path",
+      "codeium",
       "emoji",
       "ripgrep",
       "spell",
     },
     providers = {
+      codeium = {
+        module = "codeium.blink",
+        name = "Codeium",
+        async = true,
+        score_offset = 100,
+      },
       lsp = { score_offset = 50 },
       emoji = {
         module = "blink-emoji",
