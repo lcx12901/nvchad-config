@@ -21,6 +21,7 @@ return function()
     yamlls = {},
     prismals = {},
     marksman = {},
+    omnisharp = {},
     vue_ls = {
       -- settings = {
       --   vue = {
